@@ -20,10 +20,12 @@ def random_in_square():
 
 @nb.njit
 def is_in_circle(x):
+    '''uses the dot product to check within circle'''
     return np.dot(x, x) < 1.0
 
 @nb.njit
 def is_in_square(x):
+    '''checks if x and y coordinate are within square'''
     return (x[0] > -1.0 and x[0] < 1.0 and x[1] > -1.0 and x[1] < 1.0)
 
 @nb.njit
@@ -53,6 +55,7 @@ def circle_throw(delta = 0.4):
 # Quesiton 3, Helper functions
 
 def norm_cdf(x):
+    '''The one you gave use, unchanged'''
     if not isinstance(x, np.ndarray):
         xr = x.real
         xi = x.imag
@@ -75,17 +78,20 @@ def norm_cdf(x):
     return ncf
 
 def f_ex_3(x):
+    '''the function from question 3'''
     return x*np.cos(np.pi * x)
 
 def MC_est(U):
+    '''MC estimator over axis 1'''
     return np.mean(f_ex_3(U),axis=1)
     
 def exercise_3_2(m=1000, n=1000):
+    '''Excercise 3.2, draw m*n uniform RV, and use MC estimator on it'''
     U = rng.uniform(size=(m, n))
     return MC_est(U)
 
 def european_call(r=0.05,sigma=0.2,T=1,S=100,K=100,opt='value'):
-
+    '''The code you gave us'''
     S  = S + 1.0e-100     # avoids problems with S=0
     K  = K + 1.0e-100     # avoids problems with K=0
 

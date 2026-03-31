@@ -3,18 +3,22 @@ import numpy as np
 from helper_functions_1_2_3 import *
 
 # Question 1
-def hist_heat_map(x_positions, y_positions, number_of_bins = 10):
-    '''This is not njit'ed because it will not be a part of the parallisation'''
+def hist_heat_map(x_positions, y_positions, trials =False,  number_of_bins = 10):
+    '''Plots the heat map in quesiton 1. This is not njit'ed because it will not be a part of the parallisation'''
     plt.figure(figsize=(6,6))
     plt.hist2d(x_positions, y_positions, bins=number_of_bins, range=[[-1,1],[-1,1]], cmap="viridis")
     plt.colorbar(label="Number of samples")
     plt.xlabel("x")
     plt.ylabel("y")
-    plt.title("Density map of sampled positions")
+    if trials: 
+        plt.title(f"Density map of sampled positions, with traisl: {trials}")
+    else:
+        plt.title("Density map of sampled positions")
     plt.gca().set_aspect("equal")
     plt.show()
 
 def plot_1_5(delta_arr):
+    '''Plot question 1.5'''
     plt.figure(figsize=(7,5))
 
     plt.plot(
@@ -54,6 +58,7 @@ def plot_1_5(delta_arr):
 
 # Question 2
 def plot_q_2(std_dict, N, step):
+    '''Plot question 2'''
     x_axis  = np.array(range(step,N,step))
 
     threshold = 0.001
@@ -82,6 +87,7 @@ def plot_q_2(std_dict, N, step):
 
 # Question 3
 def plot_hist_3(Y_m):
+    '''Plot question 3, histogram. Not asked for, but pretty'''
     mu, std = norm.fit(Y_m)
     plt.hist(Y_m, bins=90, facecolor = '#2ab0ff', edgecolor='#169acf', linewidth=0.5, label='Y_m')
     xmin, xmax = plt.xlim()
@@ -97,6 +103,7 @@ def plot_hist_3(Y_m):
     plt.show()
 
 def plot_grid_3_3(m_vals, n_vals):
+    '''Plot m,n grid and the normal distributed'''
     fig, axes = plt.subplots(3, 3, figsize=(12, 10))
     for i, m in enumerate(m_vals):
         C_m_test = [(k - 0.5)/m for k in range(1, m+1)]
@@ -121,6 +128,7 @@ def plot_grid_3_3(m_vals, n_vals):
 
 
 def plot_3_4(y_m_list, std_list, N_val):
+    '''Plot y_m and std as N increases'''
     upper = y_m_list + 3 * std_list
     lower = y_m_list - 3 * std_list
 
@@ -161,6 +169,7 @@ def plot_3_4(y_m_list, std_list, N_val):
     plt.show()
 
 def plot_3_5_2(true_european, mc_european_list, std_euro_list, N_euro_val):
+    '''Plot mc_european_list and std as N increases'''
     upper = mc_european_list + 3 * std_euro_list
     lower = mc_european_list - 3 * std_euro_list
     upper = upper.reshape(len(mc_european_list))
