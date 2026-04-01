@@ -105,6 +105,21 @@ def plot_q_2(std_dict, N, step):
     plt.legend()
     plt.show()
 
+def plot_f_g_in_2_2():
+    x = np.linspace(0.0, 1.0, 1000)  
+    f = np.sin(np.pi * x * (1 - x))
+    g = 6 * x * (1 - x)
+    plt.figure(figsize=(8, 5))
+    plt.plot(x, f, label=r'$f(x)=\sin(\pi x(1-x))$', linewidth=2)
+    plt.plot(x, g, label=r'$g(x)=6x(1-x)$', linestyle='--', linewidth=2)
+    plt.xlabel('x')
+    plt.ylabel('Function value')
+    plt.title('Comparison of $f(x)$ and $g(x)$ on [0,1]')
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+
 # Question 3
 def plot_hist_3(Y_m):
     '''Plot question 3, histogram. Not asked for, but pretty'''
