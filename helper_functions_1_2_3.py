@@ -26,7 +26,7 @@ def is_in_circle(x):
 @nb.njit
 def is_in_square(x):
     '''checks if x and y coordinate are within square'''
-    return (x[0] > -1.0 and x[0] < 1.0 and x[1] > -1.0 and x[1] < 1.0)
+    return (x[0] >= -1.0 and x[0] <= 1.0 and x[1] >= -1.0 and x[1] <= 1.0)
 
 @nb.njit
 def simulate_number_of_hits(N):

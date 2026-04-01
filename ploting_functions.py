@@ -6,14 +6,34 @@ from helper_functions_1_2_3 import *
 def hist_heat_map(x_positions, y_positions, trials =False,  number_of_bins = 10):
     '''Plots the heat map in quesiton 1. This is not njit'ed because it will not be a part of the parallisation'''
     plt.figure(figsize=(6,6))
-    plt.hist2d(x_positions, y_positions, bins=number_of_bins, range=[[-1,1],[-1,1]], cmap="viridis")
-    plt.colorbar(label="Number of samples")
+    plt.hist2d(x_positions, y_positions, bins=number_of_bins, range=[[-1,1],[-1,1]], cmap="viridis", density=True )
+    plt.colorbar(label="Share in square")
     plt.xlabel("x")
     plt.ylabel("y")
     if trials: 
         plt.title(f"Density map of sampled positions, with traisl: {trials}")
     else:
         plt.title("Density map of sampled positions")
+    plt.gca().set_aspect("equal")
+    plt.show()
+
+def hist_heat_map_all(pos, number_of_bins=10):
+    # pos shape: (n_exp, 2, n_samples)
+    x = pos[:, 0, :].ravel()
+    y = pos[:, 1, :].ravel()
+
+    plt.figure(figsize=(6, 6))
+    plt.hist2d(
+        x, y,
+        bins=number_of_bins,
+        range=[[-1, 1], [-1, 1]],
+        cmap="viridis",
+        density=True   
+    )
+    plt.colorbar(label="Share in square")
+    plt.xlabel("x")
+    plt.ylabel("y")
+    plt.title("Combined density map across all experiments")
     plt.gca().set_aspect("equal")
     plt.show()
 
