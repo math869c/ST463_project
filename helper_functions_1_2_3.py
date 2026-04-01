@@ -77,19 +77,6 @@ def norm_cdf(x):
 
     return ncf
 
-def f_ex_3(x):
-    '''the function from question 3'''
-    return x*np.cos(np.pi * x)
-
-def MC_est(U):
-    '''MC estimator over axis 1'''
-    return np.mean(f_ex_3(U),axis=1)
-    
-def exercise_3_2(m=1000, n=1000):
-    '''Excercise 3.2, draw m*n uniform RV, and use MC estimator on it'''
-    U = rng.uniform(size=(m, n))
-    return MC_est(U)
-
 def european_call(r=0.05,sigma=0.2,T=1,S=100,K=100,opt='value'):
     '''The code you gave us'''
     S  = S + 1.0e-100     # avoids problems with S=0
